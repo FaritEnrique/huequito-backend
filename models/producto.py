@@ -1,7 +1,6 @@
 from instancias import conexion
-from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, Float, String, ForeignKey
-
+from sqlalchemy.orm import relationship
 
 class ProductoModel(conexion.Model):
     __tablename__ = "producto"
@@ -9,8 +8,8 @@ class ProductoModel(conexion.Model):
     nombre = Column(String(200), nullable=False)
     precio = Column(Float, nullable=False)
     tipo_producto_id = Column(Integer, ForeignKey('tipo_producto.id'), nullable=False)
-    marca_id = Column(Integer, ForeignKey('marca.id'), nullable=False)
-    color_id = Column(Integer, ForeignKey('color.id'), nullable=True)
+    marca_id = Column(Integer, ForeignKey('marca_producto.id'), nullable=False)  # Cambié 'marca.id' a 'marca_producto.id'
+    color_id = Column(Integer, ForeignKey('color_producto.id'), nullable=True)  # Cambié 'color.id' a 'color_producto.id'
     
     tipo_producto = relationship("TipoProductoModel", backref="productos")
     marca = relationship("MarcaProductoModel", backref="productos")
@@ -19,5 +18,5 @@ class ProductoModel(conexion.Model):
     def __repr__(self):
         return (
             f"<Producto(id={self.id}, nombre='{self.nombre}', precio={self.precio})>"
-            f"tipo_producto_id={self.tipo_producto_id}, marca_id={self.marca_id}, color_id={self.color_id})>"
+            f", tipo_producto_id={self.tipo_producto_id}, marca_id={self.marca_id}, color_id={self.color_id})>"
         )
