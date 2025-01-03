@@ -8,7 +8,8 @@ class MarcaProductoModel(conexion.Model):
     nombre = Column(String(30), nullable=False)
     tipo_producto_id = Column(Integer, ForeignKey('tipo_producto.id'), nullable=False)
     
-    tipo_producto = relationship("TipoProductoModel", backref="marcas")
-    
     def __repr__(self):
         return f"<MarcaProducto(id={self.id}, nombre='{self.nombre}', tipo_producto_id={self.tipo_producto_id})>"
+    
+    tipos_intermedios = relationship("MarcaTipoProductoModel", back_populates="marca")
+    tipos = relationship("TipoProductoModel", secondary="marca_tipo_producto", back_populates="marcas")

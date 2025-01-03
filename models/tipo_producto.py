@@ -7,8 +7,8 @@ class TipoProductoModel(conexion.Model):
     id = Column(Integer, primary_key=True)
     nombre = Column(String(100), nullable=False)
     
-    productos = relationship("ProductoModel", backref="tipo_producto", lazy=True)
-    marcas = relationship("MarcaProductoModel", backref="tipo_producto", lazy=True)
-    
     def __repr__(self):
         return f"<TipoProducto(id={self.id}, nombre='{self.nombre}')>"
+    
+    marcas_intermedios = relationship("MarcaTipoProductoModel", back_populates="tipo_producto")
+    marcas = relationship("MarcaProductoModel", secondary="marca_tipo_producto", back_populates="tipos")

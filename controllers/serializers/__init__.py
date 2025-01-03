@@ -1,0 +1,2 @@
+from .marca_serializer import MarcaSerializer
+from .tipo_producto_serializer import TipoProductoSerializer

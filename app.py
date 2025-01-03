@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from models import *
 from flask_restful import Api
 from controllers.tipo_producto import TiposProductosList
-from controllers.marca import MarcasList
+from controllers.marca import MarcaController
 
 load_dotenv()
 
@@ -19,7 +19,7 @@ migrate = Migrate(app, conexion)
 api = Api(app)
 
 api.add_resource(TiposProductosList, "/tipo-productos")
-api.add_resource(MarcasList, "/marcas")
+api.add_resource(MarcaController, "/marcas")
 
 if __name__ == '__main__':
     app.run(debug=True)

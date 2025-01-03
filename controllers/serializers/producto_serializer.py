@@ -1,8 +1,8 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from models import TipoProductoModel
+from models import ProductoModel
 
-class TipoProductoSerializer(SQLAlchemyAutoSchema):
+class ProductoSerializer(SQLAlchemyAutoSchema):
     class Meta:
-        model = TipoProductoModel
+        model = ProductoModel
         include_relationships = True
         load_instance = True

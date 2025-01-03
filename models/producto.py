@@ -11,10 +11,6 @@ class ProductoModel(conexion.Model):
     marca_id = Column(Integer, ForeignKey('marca_producto.id'), nullable=False)  # Cambié 'marca.id' a 'marca_producto.id'
     color_id = Column(Integer, ForeignKey('color_producto.id'), nullable=True)  # Cambié 'color.id' a 'color_producto.id'
     
-    tipo_producto = relationship("TipoProductoModel", backref="productos")
-    marca = relationship("MarcaProductoModel", backref="productos")
-    color = relationship("ColorProductoModel", backref="productos")
-    
     def __repr__(self):
         return (
             f"<Producto(id={self.id}, nombre='{self.nombre}', precio={self.precio})>"
